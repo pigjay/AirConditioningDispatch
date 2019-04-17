@@ -22,6 +22,16 @@
     <dependencies>
         <dependency>
             <groupId>com.pigteam.airconditioning</groupId>
+            <artifactId>dspatch-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pigteam.airconditioning</groupId>
+            <artifactId>dspatch-framework</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pigteam.airconditioning</groupId>
             <artifactId>dspatch-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

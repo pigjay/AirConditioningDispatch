@@ -12,19 +12,12 @@
     <name>dspatch-service</name>
     <packaging>jar</packaging>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <dependencies>
 
         <dependency>
-            <groupId>com.zhujie</groupId>
-            <artifactId>piggame-admin-dao</artifactId>
+            <groupId>com.pigteam.airconditioning</groupId>
+            <artifactId>dspatch-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

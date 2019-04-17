@@ -3,11 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
-		<module>dspatch-common</module>
+
 		<module>dspatch-model</module>
+		<module>dspatch-common</module>
+		<module>dspatch-framework</module>
 		<module>dspatch-dao</module>
 		<module>dspatch-service</module>
-		<module>dspatch-framework</module>
+		<module>dspatch-cms</module>
+
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -46,6 +49,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
