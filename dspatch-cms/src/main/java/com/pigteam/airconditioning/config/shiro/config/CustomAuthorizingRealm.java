@@ -5,6 +5,7 @@ import com.pigteam.airconditioning.service.user.SysUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -47,6 +48,15 @@ public class CustomAuthorizingRealm extends AuthorizingRealm {
         );
 
         return authenticationInfo;
+    }
+
+    public static void main(String[] args) {
+        String hashAlgorithmName = "MD5";
+        String credentials = "123456";
+        int hashIterations = 2;
+        ByteSource credentialsSalt = ByteSource.Util.bytes("zhujie1212131");
+        Object obj = new SimpleHash(hashAlgorithmName, credentials, credentialsSalt, hashIterations);
+        System.out.println(obj);
     }
 
 }

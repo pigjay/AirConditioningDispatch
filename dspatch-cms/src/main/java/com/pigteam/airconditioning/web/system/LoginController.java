@@ -1,12 +1,17 @@
 package com.pigteam.airconditioning.web.system;
 
 import com.pigteam.airconditioning.common.enums.SystemCodeEnum;
+import com.pigteam.airconditioning.common.utils.tree.TreeNode;
+import com.pigteam.airconditioning.common.utils.tree.TreeUtil;
 import com.pigteam.airconditioning.common.utils.vcode.Captcha;
 import com.pigteam.airconditioning.common.utils.vcode.GifCaptcha;
 import com.pigteam.airconditioning.common.web.Result;
 import com.pigteam.airconditioning.config.vcode.FebsProperties;
+import com.pigteam.airconditioning.model.dto.Model;
 import com.pigteam.airconditioning.model.po.user.CurrentUser;
 import com.pigteam.airconditioning.model.req.LoginReq;
+import com.pigteam.airconditioning.model.req.MenuReq;
+import com.pigteam.airconditioning.service.user.SysPermissionService;
 import com.pigteam.airconditioning.service.user.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -23,6 +28,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @className: LoginController
@@ -40,11 +49,12 @@ public class LoginController {
     @Autowired
     private FebsProperties febsProperties;
 
+
     @Autowired
-    private SysUserService sysUserService;
+    private SysPermissionService sysPermissionService;
 
     @PostMapping("/login")
-    public Result login(@RequestBody @Valid LoginReq loginReq, HttpServletRequest request) {
+    public Result login(@RequestBody @Valid LoginReq loginReq) {
 
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
@@ -62,7 +72,11 @@ public class LoginController {
             return Result.fail(SystemCodeEnum.AUTH_PASSWORD_ERROR);
         }
         CurrentUser currentUser = (CurrentUser) subject.getPrincipal();
-        return Result.success(currentUser.getSysUser());
+        Map<String,Object> data = new HashMap<>(3);
+        data.put("id",currentUser.getSysUser().getId());
+        data.put("username",currentUser.getSysUser().getUsername());
+        data.put("nickname",currentUser.getSysUser().getNickname());
+        return Result.success(data);
     }
 
     @PostMapping("/logout")
@@ -92,4 +106,11 @@ public class LoginController {
             log.error("图形验证码生成失败", e);
         }
     }
+
+    @GetMapping("/static/menu")
+    public Result menu(MenuReq menuReq){
+
+        return Result.success();
+    }
+
 }
