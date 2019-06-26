@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * @author zzq
  */
-@Configuration
+//@Configuration
 public class ShiroConfig {
 
     @Value("${shiro.hashIterations:2}")

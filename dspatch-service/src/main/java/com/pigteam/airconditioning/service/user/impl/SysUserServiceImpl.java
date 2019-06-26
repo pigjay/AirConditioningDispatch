@@ -10,6 +10,7 @@ import com.pigteam.airconditioning.service.base.impl.BaseServiceImpl;
 import com.pigteam.airconditioning.service.user.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -52,5 +53,18 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> 
         currentUser.setPermissions(permissionUrl);
 
         return currentUser;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void save(SysUser sysUser) {
+        sysUserMapper.insert(sysUser);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void save1(SysUser sysUser, SysRole sysRole) {
+        this.save(sysUser);
+        sysRoleMapper.insert(sysRole);
     }
 }

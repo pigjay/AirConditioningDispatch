@@ -2,6 +2,7 @@ package com.pigteam.airconditioning.service.user;
 
 import com.pigteam.airconditioning.mapper.user.SysUserMapper;
 import com.pigteam.airconditioning.model.po.user.CurrentUser;
+import com.pigteam.airconditioning.model.po.user.SysRole;
 import com.pigteam.airconditioning.model.po.user.SysUser;
 import com.pigteam.airconditioning.service.base.BaseService;
 
@@ -20,4 +21,8 @@ public interface SysUserService extends BaseService<SysUser, SysUserMapper> {
      * @return
      */
     CurrentUser getCurrentUserByUsername(String loginName);
+
+    void save(SysUser sysUser);
+
+    void save1(SysUser sysUser, SysRole sysRole);
 }
